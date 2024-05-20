@@ -32,7 +32,7 @@ public class BalanceEnquiry extends JFrame implements ActionListener {
         Conn conn = new Conn() ;
         int balance = 0 ;
         try{
-            String query = "SELECT * FROM bank where pin = '"+pinnumber+"'" ;  //ye sari rows de dega jiska pin ye hoga
+            String query = "SELECT * FROM bank where pin = '"+pinnumber+"'" ;
             ResultSet rs = conn.s.executeQuery(query) ;
             while(rs.next()){
                 if(rs.getString("type").equals("Deposit")){
@@ -60,7 +60,7 @@ public class BalanceEnquiry extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent ae){
-        //ek hi button hai to koi dikkat ni
+
         setVisible(false);
         new Transactions(pinnumber).setVisible(true);
     }

@@ -85,7 +85,6 @@ public class SignupThree extends JFrame implements ActionListener {
         servicerequired.setFont(new Font("Raleway", Font.BOLD, 22)) ;
         add(servicerequired) ;
 
-        //tickmark wale checkbox hote hai
         c1 = new JCheckBox("ATM CARD") ;
         c1.setBackground(Color.WHITE);
         c1.setFont(new Font("Raleway",Font.BOLD, 16)) ;
@@ -167,11 +166,8 @@ public class SignupThree extends JFrame implements ActionListener {
                 accountType = "Recurring Deposit Account" ;
             }
 
-            // 16 digit ka card no. generate karenge--> Random class ka use karenge
-            Random random = new Random() ;  // java.util.* package me hai
-            //long cardnumber = Math.abs((random.nextLong() % 90000000L) + 5040936000000000L) ; //nextLong kyuli 16 digit lamba no. hai
-            // + ke baad jo no. hai likha hai isliye ki mujhe chahiye ki starting ke ye digit sabme same rahe last ke 8 zeros hata ke
-            // i.e., 50409360
+
+            Random random = new Random() ;
 
             String cardnumber = "" + Math.abs((random.nextLong() % 90000000L) + 5040936000000000L) ;
             String pinnumber = ""+ Math.abs((random.nextLong() % 9000L)+1000L) ;
@@ -207,20 +203,6 @@ public class SignupThree extends JFrame implements ActionListener {
                     conn.s.executeUpdate(query1) ;
                     conn.s.executeUpdate(query2) ;
 
-                    //sql me table bana di
-                    // ab user ko bhi to batana hai ki bhai tera card no. and pin kya hai
-                    //uske liye JOptionPane ka use hoga
-                    JOptionPane.showMessageDialog(null, "Card Number: " + cardnumber + "\n Pin: " + pinnumber);
-                    //login table bhi banayenge sql me kyuki main ni chata ki main signupthree table se data pick karu login karwane ke liye
-                    // isi liye query2 bhi uper likhenge aur use login table me store karenge
-
-                    /*
-                    below line is after Depost frame
-                    -jaise hi submit button par click ho Deposit wala frame open ho kyuki 0 account se withdraw
-                    nahi hoga ko kuch ammount deposit karna hoga
-                    -jaise hi submit par click ho current frame close ho
-
-                     */
                     setVisible(false);
                     new Deposit(pinnumber).setVisible(true);
                 }
@@ -233,7 +215,7 @@ public class SignupThree extends JFrame implements ActionListener {
         }
         else if(ae.getSource()==cancel){
             setVisible(false);
-            //aur login page khulna chahiye
+
             new Login().setVisible(true); ;
         }
     }

@@ -11,26 +11,21 @@ public class Transactions extends JFrame implements ActionListener {
     Transactions(String pinnumber){
         this.pinnumber  = pinnumber ;
         setLayout(null);
-        //sabse pehle ATM ki image load karenge
+
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/atm.jpg")) ;
-        //ab is image ko scale karna hoga
         Image i2 = i1.getImage().getScaledInstance(900,900,Image.SCALE_DEFAULT) ;//image class AWT package ke ander hoti hai
-        // i2 ko wapas se ImageIcon me convert karna hoga
         ImageIcon i3 = new ImageIcon(i2) ;
-        // i3 ko ab JLabel ke ander dalna hoga
         JLabel image = new JLabel(i3) ;
         image.setBounds(0,0,900,900) ;
         add(image) ;
 
         JLabel text = new JLabel("Please select your Transaction") ;
         text.setForeground(Color.white);
-        text.setFont(new Font("System", Font.BOLD,16)) ;  //Raleway bhi le sakte hai
+        text.setFont(new Font("System", Font.BOLD,16)) ;
         text.setBounds(210,300,700,35);
-        //add(text) aagr likhenge to frame par to add kar dega but image ke uper add karna hai to image.add(text) ;
         image.add(text) ;
 
         deposit = new JButton("Deposit") ;
-        //deposit.setFont(new Font("Raleway", Font.BOLD, 16));
         deposit.setBounds(170,415,150,30);
         deposit.addActionListener(this);
         image.add(deposit) ;
@@ -67,14 +62,14 @@ public class Transactions extends JFrame implements ActionListener {
 
         setSize(900,900);
         setLocation(300,0);
-        setUndecorated(true);   // frame ke top par to white strip hoti hai wo hat jayegi,jisme frame cut wala option hota hai
-        setVisible(true);  //setVisible last me hi likhna hota hai kyuki jo bhi iske baad change karenge ko visible nahi hunge
+        setUndecorated(true);
+        setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
         if(ae.getSource()==exit){
-            System.exit(0) ;  //frame band ho jayega
+            System.exit(0) ;
         }
         else if(ae.getSource()==deposit){
             setVisible(false);
@@ -97,14 +92,12 @@ public class Transactions extends JFrame implements ActionListener {
             new BalanceEnquiry(pinnumber).setVisible(true);
         }
         else if(ae.getSource()==ministatement){
-            //setVisible(false);  yaha par hum atm wala page band ni karna chate but side me ministatement ka page aajaye
             new MiniStatement(pinnumber).setVisible(true); ;
         }
     }
 
-    //move to login class taki signin par click karte hi ye wala page khule
 
     public static void main(String[] args) {
-        new Transactions("") ;   //uper constructor me isliye code likhte hai kyuki class ka object banate hi constructor call hota hai
+        new Transactions("") ;
     }
 }

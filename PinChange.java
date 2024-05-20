@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 
 public class PinChange extends JFrame implements ActionListener {
 
-    //JTextField pin, repin ;  ye sab user ko visible nahi honi chahiye to JPasswordField use karenge
     JPasswordField pin,repin ;
     JButton change, back ;
     String pinnumber ;
@@ -69,10 +68,10 @@ public class PinChange extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent ae){
         if(ae.getSource()==change){
             try{
-                //dono text filed se text nikal lenge
+
                 String npin = pin.getText() ;
                 String rpin = repin.getText() ;
-                //check ki dono me same text dala hai ki nahi
+
                 if(!npin.equals(rpin)){
                     JOptionPane.showMessageDialog(null,"Entered pin does not match");
                     return ;
@@ -86,18 +85,12 @@ public class PinChange extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(null,"Please Re-enter new pin");
                     return ;
                 }
-                //dono check ke baad database ke sath connection khol sakte hai aur pin ko database me update kar sakte hai
 
                 Conn conn = new Conn() ;
-                //pin ka iuse 3 table me ho raha hai database me-->login, signupthree, and bank table me
-                //to teeno jagha update karna hoga to 3 query banegi
-                //String query1 = "UPDATE bank SET pin = '"+rpin+"' " ; //agar sirf itni command chalai to har jagha change kar dega
                 String query1 = "UPDATE bank SET pin = '"+rpin+"' WHERE pin = '"+pinnumber+"' " ;
-                //jahan pin pinnunber se match karta hai usko rpin se update kardo
                 String query2 = "UPDATE login SET pin = '"+rpin+"' WHERE pin = '"+pinnumber+"' " ;
                 String query3 = "UPDATE signupthree SET pin = '"+rpin+"' WHERE pin = '"+pinnumber+"' " ;
 
-                //teeno query ko execute karna hoga
 
                 conn.s.executeUpdate(query1) ;   //DML command hai
                 conn.s.executeUpdate(query2) ;

@@ -14,8 +14,8 @@ public class SignupTwo extends JFrame implements ActionListener {
     JRadioButton scyes, scno,  eayes, eano ;
     JComboBox religionbox, categorybox, incomebox , qualificationbox, occupationbox ;
     String formno ;
-//    SignupTwo(String formno){   // niche wale constructor me bhi String daal sakte hai but main me bhi fir jab Object
-//        this.formno = formno ;   // banaya hai usme bhi fir empty String pass karna hoga
+//    SignupTwo(String formno){
+//        this.formno = formno ;
 //    }
     String getFormno ;
     SignupTwo(String formno){
@@ -33,8 +33,7 @@ public class SignupTwo extends JFrame implements ActionListener {
         religion.setBounds(100, 140, 100,30);
         add(religion) ;
 
-        // Regilion ke aage Drop Down button chahiye
-        // dropdown aata hai combobox class se jiske ander Array of String pass karni hoti hai
+
         String [] valreligion = {"Hindu", "Muslim", "Sikh" , "Christian", "other"} ;
         religionbox = new JComboBox(valreligion) ;
         religionbox.setBounds(300,140,400,30) ;
@@ -164,7 +163,6 @@ public class SignupTwo extends JFrame implements ActionListener {
         setVisible(true);
     }
     public void actionPerformed(ActionEvent ae) {
-        // dropdown button se data extract karne ke liye getSelectedItem() function ka use kar sakte hai
         String sreligion = (String)religionbox.getSelectedItem() ;   // but ye object me retrun karta hai to ise typecast karna hoga string me
         String scategory = (String)categorybox.getSelectedItem() ;
         String sincome = (String)incomebox.getSelectedItem() ;
@@ -190,23 +188,18 @@ public class SignupTwo extends JFrame implements ActionListener {
         }
 
         try{
-            // ab in values ko database me enter karna hai
             if(span.equals("")){
                 JOptionPane.showMessageDialog(null,"pan is Required");
 
             }
             else{
-                //perticularly kis user ka data hai wo to bhi pata hona chahiye to uske liye signupOne ka formno yaha
-                //primary key ka kaam karega
-                //go to signupOne and usko frame ko next par click hote hi close karna hai and formno ko waha se yaha pass karna
-                //hai hai object bana ke aur yaha constructor bana ke
-                //go to signupOne try block
+
                 Conn c = new Conn() ;
                 String query = "INSERT INTO signuptwo VALUES('"+formno+"' , '"+sreligion +"' ,'"+scategory +"' ,'"+sincome +"' ,'"+squalification +"' ,'"+soccupation +"' ,'"+span +"' ,'"+saadhar +"' , '"+scstatus +"' ,'"+eastatus +"' )" ;
                 c.s.executeUpdate(query) ;
 
-                //signup3 object
-                setVisible(false);  //current class ka frame band ho
+
+                setVisible(false);
                 new SignupThree(formno).setVisible(true) ;
             }
         }
